@@ -1,18 +1,18 @@
 services:
   db:
-    image: postgres:16-alpine
-    container_name: fastapi_postgres
+    image: mariadb:lts-ubi9
+    container_name: fastapi_mariadb
     restart: always
     env_file:
       - .env
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_USER: ${MARIADB_USER}
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - mariadb_data:/var/lib/mysql
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "${MARIADB_PORT}:3306"
     networks:
       - api-network
 
@@ -33,7 +33,7 @@ services:
       - api-network
 
 volumes:
-  postgres_data:
+  mariadb_data:
 
 networks:
   api-network:
