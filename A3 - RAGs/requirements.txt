@@ -1,0 +1,5 @@
+groq==1.0.0
+openai==1.84.0
+python-dotenv==0.19.2
+pypdf==6.9.0
+sentence-transformers==5.3.0
